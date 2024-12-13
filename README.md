@@ -1,5 +1,8 @@
 # Prayer Beads Counter
 
+🔗 https://safeguard.hashir.pro/
+🌍️ https://safeguard.hashir.pro/
+
 ## TL;DR
 
 Its a prayer beads counter for effectively:
