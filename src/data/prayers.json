@@ -1,0 +1,34 @@
+{
+  "prayers": [
+    {
+      "id": 1,
+      "arabicText": "سُبْحَانَ اللّٰهِ وَبِحَمْدِهٖ سُبْحَانَ اللّٰهِ الْعَظِيْمِ اَللّٰهُمَّ صَلِّ عَليٰ مُحَمَّدٍ و اٰلِ مُحَمَّدٍ",
+      "translations": {
+        "english": "Holy is Allah and worthy of all praise, Holy is Allah the Great, O Allah bestow Thy blessings upon Muhammad and the people of Muhammad",
+        "urdu": ""
+      },
+      "recommendedDaily": 200,
+      "colour": "rgb(252, 186, 3)"
+    },
+    {
+      "id": 2,
+      "arabicText": "أسْتَغْفِرُ اللهَ رَبي مِنْ كُلِ ذَنبٍ وَأتُوبُ إلَيهِ",
+      "translations": {
+        "english": "I seek forgiveness from Allah, my Lord, for all my sins and turn to Him",
+        "urdu": ""
+      },
+      "recommendedDaily": 100,
+      "colour": "rgb(83, 245, 151)"
+    },
+    {
+      "id": 3,
+      "arabicText": "رَبِّ کُلُّ شَیْءٍ خَادِمُکَ رَبِّ فَاحْفَظْنِیْ وَانْصُرْنِیْ وَارْحَمْنِیْ",
+      "translations": {
+        "english": "My Lord everything is subservient to You; My Lord protect me, help me and have mercy on me",
+        "urdu": ""
+      },
+      "recommendedDaily": 100,
+      "colour": "rgb(247, 103, 87)"
+    }
+  ]
+}
