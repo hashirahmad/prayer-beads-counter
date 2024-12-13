@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Container } from "@mui/material";
 import { PrayerSelector } from "../components/PrayerSelector";
 import { PrayerCard } from "../components/PrayerCard";
 import prayers from "../data/prayers.json";
-import PrayerAppeal from "../components/PrayerAppeal";
 
 export const PrayersPage: React.FC = () => {
   const [selectedPrayerId, setSelectedPrayerId] = useState<number | null>(null);
