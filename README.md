@@ -1,7 +1,8 @@
 # Prayer Beads Counter
 
-🔗 https://safeguard.hashir.pro/
-🌍️ https://safeguard.hashir.pro/
+🔗 https://safeguard.hashir.pro/ \
+🌍️ https://safeguard.hashir.pro/ \
+🔄 CHANGELOG [here](./CHANGELOG.md)
 
 ## TL;DR
 

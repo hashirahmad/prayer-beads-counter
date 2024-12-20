@@ -20,7 +20,7 @@ import Emphasis from "./micro/Emphasis";
 import CustomLink from "./micro/CustomLink";
 import GradientHeading from "./micro/GradientHeading";
 import Wrapper from "./micro/Wrapper";
-import ArabicText from "./micro/ArabicText";
+import MultilingualText from "./micro/MultilingualText";
 import prayers from "../data/prayers.json";
 
 const PrayerAppeal = () => {
@@ -126,7 +126,7 @@ const PrayerAppeal = () => {
             </Typography>
 
             <BlockQuote>
-              the{" "}
+              ...the{" "}
               <CustomLink
                 href="https://en.wikipedia.org/wiki/Mirza_Nasir_Ahmad"
                 children="Third Caliph (rh)"
@@ -139,17 +139,21 @@ const PrayerAppeal = () => {
                 children="Holy Prophet (sa)"
               />
               {"] "}{" "}
-              <ArabicText
+              <MultilingualText
                 text={prayers.prayers[0].arabicText}
-                color={prayers.prayers[0].colour}
+                colour={prayers.prayers[0].colour}
+                language="arabic"
+                fontSize="xLarge"
               />{" "}
               ({prayers.prayers[0].translations.english}) 200 times. Those who
               are 15-25 years of age recite it at least 100 times, and if
               children recite it at least 33 times and parents help their infant
               children recite it at least three to four times. Then recite{" "}
-              <ArabicText
+              <MultilingualText
                 text={prayers.prayers[1].arabicText}
-                color={prayers.prayers[1].colour}
+                colour={prayers.prayers[1].colour}
+                language="arabic"
+                fontSize="xLarge"
               />{" "}
               ({prayers.prayers[1].translations.english}) 100 times.
             </BlockQuote>
@@ -165,10 +169,12 @@ const PrayerAppeal = () => {
             </Typography>
 
             <BlockQuote>
-              he would also include the prayer{" "}
-              <ArabicText
+              ...he would also include the prayer{" "}
+              <MultilingualText
                 text={prayers.prayers[2].arabicText}
-                color={prayers.prayers[2].colour}
+                colour={prayers.prayers[2].colour}
+                language="arabic"
+                fontSize="xLarge"
               />{" "}
               ({prayers.prayers[2].translations.english}) to be recited not just
               in these days but generally as well.
@@ -185,7 +191,7 @@ const PrayerAppeal = () => {
             </Typography>
 
             <BlockQuote
-              children="these days when Satan is trying to attack our Community and
+              children="...these days when Satan is trying to attack our Community and
                   the world at large, the only way for us to remain safeguarded
                   is through prayers. Hence, we should recite these prayers, not
                   just during the days of Jalsa but throughout the year."

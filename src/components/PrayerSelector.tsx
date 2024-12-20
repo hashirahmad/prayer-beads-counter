@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import prayers from "../data/prayers.json";
-import ArabicText from "./micro/ArabicText";
+import MultilingualText from "./micro/MultilingualText";
 
 interface PrayerSelectorProps {
   onSelectPrayer: (prayerId: number) => void;
@@ -62,10 +62,10 @@ export const PrayerSelector: React.FC<PrayerSelectorProps> = ({
               flex: 1, // Take up remaining space
             }}
             primary={
-              <ArabicText
+              <MultilingualText
                 text={prayer.arabicText}
-                fontSize="large"
-                color={prayer.colour}
+                fontSize="xLargePlus"
+                colour={prayer.colour}
               />
             }
           />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Stack, TextField } from "@mui/material";
 import { Prayer, DailyProgress } from "../types";
 import Wrapper from "./micro/Wrapper";
-import ArabicText from "./micro/ArabicText";
+import MultilingualText from "./micro/MultilingualText";
 
 const ConcentricRings: React.FC<{
   prayers: Prayer[];
@@ -102,11 +102,13 @@ const ConcentricRings: React.FC<{
               }}
             >
               {/* Prayer text and progress */}
-              <ArabicText
-                color={color}
+              <MultilingualText
+                colour={color}
                 text={`${prayer.arabicText} (${currentProgress?.count || 0}/${
                   prayer.recommendedDaily
                 })`}
+                fontSize="large"
+                language="arabic"
               />
             </div>
           );

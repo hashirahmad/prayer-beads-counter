@@ -5,7 +5,7 @@ import { useProgress } from "../hooks/useProgress";
 import AddCircle from "@mui/icons-material/AddCircle";
 import RemoveCircle from "@mui/icons-material/RemoveCircle";
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import ArabicText from "./micro/ArabicText";
+import MultilingualText from "./micro/MultilingualText";
 
 interface PrayerCardProps {
   prayer: Prayer;
@@ -13,21 +13,12 @@ interface PrayerCardProps {
 }
 
 export const PrayerCard: React.FC<PrayerCardProps> = ({ prayer, onClose }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<
-    "english" | "urdu" | null
-  >(null);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [showUrdu, setShowUrdu] = useState(false);
   const { todayCount, increment, decrement } = useProgress(prayer.id);
   const progress = (todayCount / prayer.recommendedDaily) * 100;
 
-  const handleLanguageSelect = (language: "english" | "urdu") => {
-    if (selectedLanguage === language && isFlipped) {
-      setIsFlipped(false);
-      setSelectedLanguage(null);
-    } else {
-      setSelectedLanguage(language);
-      setIsFlipped(true);
-    }
+  const toggleUrdu = () => {
+    setShowUrdu(!showUrdu);
   };
 
   return (
@@ -68,109 +59,95 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({ prayer, onClose }) => {
           <Button size="small" variant="outlined" onClick={onClose}>
             <ArrowBack fontSize="medium" />
           </Button>
-          <Button
-            size="small"
-            variant={
-              selectedLanguage === "english" && isFlipped
-                ? "contained"
-                : "outlined"
-            }
-            onClick={() => handleLanguageSelect("english")}
-          >
-            English
-          </Button>
           {prayer.translations.urdu && (
             <Button
               size="small"
-              variant={
-                selectedLanguage === "urdu" && isFlipped
-                  ? "contained"
-                  : "outlined"
-              }
-              onClick={() => handleLanguageSelect("urdu")}
+              variant={showUrdu ? "outlined" : "contained"}
+              onClick={toggleUrdu}
             >
-              Urdu
+              {showUrdu ? "English" : "Urdu"}
             </Button>
           )}
         </Box>
 
-        {/* Flip container */}
+        {/* Content container */}
         <Box
           sx={{
-            flex: "40%",
-            perspective: "1000px",
-            position: "relative",
+            flex: "65%",
+            display: "flex",
+            flexDirection: "column",
+            p: 2,
           }}
         >
-          {/* Flip card inner container */}
+          {/* Arabic text - always visible */}
           <Box
             sx={{
-              position: "relative",
-              width: "100%",
-              height: "100%",
-              transition: "transform 0.6s",
-              transformStyle: "preserve-3d",
-              transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+              flex: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            {/* Front side (Arabic) */}
-            <Box
-              sx={{
-                position: "absolute",
-                width: "100%",
-                height: "100%",
-                backfaceVisibility: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                p: 2,
-              }}
-            >
-              <ArabicText
-                text={prayer.arabicText}
-                fontSize="2.15em"
-                color={prayer.colour}
-              />
-            </Box>
+            <MultilingualText
+              text={prayer.arabicText}
+              colour={prayer.colour}
+              fontSize="xGiant"
+              language="arabic"
+            />
+          </Box>
 
-            {/* Back side (Translation) */}
+          {/* Translation container with flip animation */}
+          <Box
+            sx={{
+              flex: 1,
+              perspective: "1000px",
+            }}
+          >
             <Box
               sx={{
-                position: "absolute",
+                position: "relative",
                 width: "100%",
                 height: "100%",
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg)",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                p: 2,
+                transition: "transform 0.6s",
+                transformStyle: "preserve-3d",
+                transform: showUrdu ? "rotateY(180deg)" : "rotateY(0deg)",
               }}
             >
-              <Typography
-                sx={{
+              {/* English translation - front side */}
+              <MultilingualText
+                customStyle={{
+                  position: "absolute",
+                  width: "100%",
+                  backfaceVisibility: "hidden",
                   textAlign: "initial",
-                  fontSize: "1.15em",
-                  color: prayer.colour,
-                  fontFamily: "Roboto, sans-serif",
                 }}
-              >
-                {selectedLanguage === "english"
-                  ? prayer.translations.english
-                  : prayer.translations.urdu}
-              </Typography>
+                text={prayer.translations.english}
+                colour={prayer.colour}
+                language="english"
+                fontSize="largePlus"
+              />
+              {/* Urdu translation - back side */}
+              <MultilingualText
+                customStyle={{
+                  position: "absolute",
+                  width: "100%",
+                  backfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
+                  textAlign: "initial",
+                }}
+                text={prayer.translations.urdu}
+                colour={prayer.colour}
+                language="urdu"
+                fontSize="largePlus"
+              />
             </Box>
           </Box>
         </Box>
 
-        {/* Counter and buttons remain the same */}
-        <Typography sx={{ textAlign: "center", color: "text.secondary" }}>
-          Recited {todayCount}/{prayer.recommendedDaily}
-        </Typography>
-
+        {/* Counter buttons */}
         <Box
           sx={{
-            flex: "60%",
+            flex: "35%",
             minWidth: "110%",
             display: "flex",
             pr: -10,
@@ -188,6 +165,9 @@ export const PrayerCard: React.FC<PrayerCardProps> = ({ prayer, onClose }) => {
             }}
           >
             <AddCircle fontSize="large" />
+            <Typography sx={{ textAlign: "center", color: "text.secondary" }}>
+              Recited {todayCount}/{prayer.recommendedDaily}
+            </Typography>
           </Button>
           <Button
             variant="contained"
